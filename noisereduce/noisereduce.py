@@ -1,4 +1,4 @@
-from noisereduce.stream import StreamGate
+# from noisereduce.stream.base import StreamGate
 
 def reduce_noise(
         x,

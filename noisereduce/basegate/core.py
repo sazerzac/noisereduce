@@ -4,7 +4,7 @@ from scipy.signal import fftconvolve, stft, istft
 from .utils import temperature_sigmoid, amp_to_db, std_mean
 
 
-class PyGate:
+class BaseGate:
     """
     A class that implements the noisereduce algorithm using NumPy and SciPy.
 
