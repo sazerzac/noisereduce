@@ -1,6 +1,6 @@
 from noisereduce.spectralgate.base import SpectralGate
 import numpy as np
-from scipy.signal import fftconvolve, stft, istft
+from ._signal_compat import fftconvolve, stft, istft
 from .utils import _amp_to_db
 
 

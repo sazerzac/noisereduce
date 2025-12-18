@@ -1,9 +1,8 @@
 # local package
 -e .
 
-matplotlib
 numpy
-scipy
+# scipy is optional - install with: pip install noisereduce[scipy]
 tqdm
 torch
 joblib

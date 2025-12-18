@@ -1,6 +1,6 @@
 from noisereduce.spectralgate.base import SpectralGate
 import numpy as np
-from scipy.signal import filtfilt, fftconvolve, stft, istft
+from ._signal_compat import filtfilt, fftconvolve, stft, istft
 from .utils import sigmoid
 
 

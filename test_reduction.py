@@ -14,9 +14,10 @@ def test_reduce_generated_noise_stationary_with_noise_clip():
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     noise_clip = noise[: rate * noise_len]
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, y_noise=noise_clip, stationary=True
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 def test_reduce_generated_noise_stationary_without_noise_clip():
@@ -28,9 +29,10 @@ def test_reduce_generated_noise_stationary_without_noise_clip():
     noise = band_limited_noise(
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, stationary=True
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 def test_reduce_generated_noise_nonstationary():
@@ -42,9 +44,10 @@ def test_reduce_generated_noise_nonstationary():
     noise = band_limited_noise(
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, stationary=False
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 def test_reduce_generated_noise_batches():
@@ -56,9 +59,10 @@ def test_reduce_generated_noise_batches():
     noise = band_limited_noise(
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, stationary=False, chunk_size=30000
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 def test_reduce_torch_cpu_stationary():
@@ -70,9 +74,10 @@ def test_reduce_torch_cpu_stationary():
     noise = band_limited_noise(
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, stationary=True, chunk_size=30000, use_torch=True, device='cpu'
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 # def test_reduce_torch_cpu_stationary_cuda():
@@ -98,9 +103,10 @@ def test_reduce_torch_cpu_non_stationary():
     noise = band_limited_noise(
         min_freq=2000, max_freq=12000, samples=len(data), samplerate=rate) * 10
     audio_clip_band_limited = data + noise
-    return nr.reduce_noise(
+    reduced = nr.reduce_noise(
         y=audio_clip_band_limited, sr=rate, stationary=False, chunk_size=30000, use_torch=True, device='cpu'
     )
+    assert reduced.shape == audio_clip_band_limited.shape
 
 
 # def test_reduce_torch_cpu_non_stationary_cuda():
